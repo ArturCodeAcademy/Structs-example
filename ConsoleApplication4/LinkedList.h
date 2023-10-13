@@ -21,3 +21,7 @@ void RemoveNode(struct LinkedList* list, struct node* node);
 void PrintList(struct LinkedList* list);
 struct node* FindNode(struct LinkedList* list, int data);
 struct node* FindLastNode(struct LinkedList* list, int data);
+struct node* FindNthNode(struct LinkedList* list, int n);
+struct node* FindNodeByCondition(struct LinkedList* list, int(*condition)(int));
+struct node* FindLastNodeByCondition(struct LinkedList* list, int(*condition)(int))
+	;

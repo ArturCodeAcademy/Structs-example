@@ -135,5 +135,43 @@ struct node* FindLastNode(struct LinkedList* list, int data)
 		}
 	}
 	return lastNode;
+}
 
+struct node* FindNthNode(struct LinkedList* list, int n)
+{
+	struct node* it = list->head;
+	for (int i = 0; i < n; i++)
+	{
+		if (it == NULL)
+		{
+			return NULL;
+		}
+		it = it->next;
+	}
+	return it;
+}
+
+struct node* FindNodeByCondition(struct LinkedList* list, int(*condition)(int))
+{
+	for (struct node* it = list->head; it != NULL; it = it->next)
+	{
+		if (condition(it->data))
+		{
+			return it;
+		}
+	}
+	return NULL;
+}
+
+struct node* FindLastNodeByCondition(struct LinkedList* list, int(*condition)(int))
+{
+	struct node* lastNode = NULL;
+	for (struct node* it = list->head; it != NULL; it = it->next)
+	{
+		if (condition(it->data))
+		{
+			lastNode = it;
+		}
+	}
+	return lastNode;
 }
