@@ -1,5 +1,6 @@
 #include "LinkedList.h"	
-#include "DinamicArrayInt.h"	
+#include "DinamicArrayInt.h"
+#include "BinaryTree.h"
 
 int Double(int value)
 {
@@ -27,8 +28,8 @@ void ListTest()
 	PrintList(&list);
 	RemoveElement(&list, 5);
 	PrintList(&list);
-	struct node* f = FindNode(&list, 1);
-	struct node* l = FindLastNode(&list, 1);
+	struct LinkedListNode* f = FindNode(&list, 1);
+	struct LinkedListNode* l = FindLastNode(&list, 1);
 
 	printf("Found node: %d, Next: %d\n", f->data, f->next->data);
 	printf("Found last node: %d, Next: %d\n", l->data, l->next->data);
@@ -74,13 +75,41 @@ void TestDArray()
     return 0;
 }
 
-int main()
+void TestTree()
+{
+    struct BinaryTree* tree = CreateBinaryTree();
+    int arr[] = { 5, 2, 1, 3, 7, 6, 10, 8, 9, 12 };
+    for (int i = 0; i < 10; i++)
+        InsertBinaryTree(tree, arr[i]);
+
+    int min = BinaryTreeMin(tree)->data;
+    int max = BinaryTreeMax(tree)->data;
+
+    printf("Min: %d\nMax: %d\n", min, max);
+
+    PrintBinarySortedTree(tree);
+
+    int found = BinaryTreeSearch(tree->root, 7) != NULL;
+    printf("Found 7: %d\n", found);
+    found = BinaryTreeSearch(tree->root, 12) != NULL;
+    printf("Found 11: %d\n", found);
+}
+
+void Test()
 {
     printf("List test\n");
-	ListTest();
+    ListTest();
 
     printf("\nDinamic array test\n");
-	TestDArray();
+    TestDArray();
+
+    printf("\nBinary tree test\n");
+    TestTree();
+}
+
+int main()
+{
+   Test();
 
 	return 0;
 }

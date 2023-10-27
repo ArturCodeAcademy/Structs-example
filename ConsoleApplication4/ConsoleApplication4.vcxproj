@@ -127,11 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BinaryTree.c" />
     <ClCompile Include="ConsoleApplication4.c" />
     <ClCompile Include="DinamicArrayInt.c" />
     <ClCompile Include="LinkedList.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="DinamicArrayInt.h" />
     <ClInclude Include="LinkedList.h" />
   </ItemGroup>

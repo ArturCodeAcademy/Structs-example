@@ -11,10 +11,10 @@ struct LinkedList CreateLinkedListFromArray(int* arr, int size)
 {
 	struct LinkedList list = CreateLinkedList();
 	AddNode(&list, arr[0]);
-	struct node* it = list.head;
+	struct LinkedListNode* it = list.head;
 	for (int i = 1; i < size; i++)
 	{
-		it->next = malloc(sizeof(struct node));
+		it->next = malloc(sizeof(struct LinkedListNode));
 		it->next->data = arr[i];
 		it->next->next = NULL;
 		it = it->next;
@@ -22,9 +22,9 @@ struct LinkedList CreateLinkedListFromArray(int* arr, int size)
 	return list;
 }
 
-struct node* AddNode(struct LinkedList* list, int data)
+struct LinkedListNode* AddNode(struct LinkedList* list, int data)
 {
-	struct node* newNode = malloc(sizeof(struct node));
+	struct LinkedListNode* newNode = malloc(sizeof(struct LinkedListNode));
 	newNode->data = data;
 	newNode->next = NULL;
 
@@ -34,7 +34,7 @@ struct node* AddNode(struct LinkedList* list, int data)
 	}
 	else
 	{
-		struct node* it = list->head;
+		struct LinkedListNode* it = list->head;
 		while (it->next != NULL)
 		{
 			it = it->next;
@@ -54,18 +54,18 @@ void RemoveElement(struct LinkedList* list, int data)
 
 	if (list->head->data == data)
 	{
-		struct node* temp = list->head;
+		struct LinkedListNode* temp = list->head;
 		list->head = list->head->next;
 		free(temp);
 		return;
 	}
 
-	struct node* it = list->head;
+	struct LinkedListNode* it = list->head;
 	while (it->next != NULL)
 	{
 		if (it->next->data == data)
 		{
-			struct node* temp = it->next;
+			struct LinkedListNode* temp = it->next;
 			it->next = it->next->next;
 			free(temp);
 			return;
@@ -74,7 +74,7 @@ void RemoveElement(struct LinkedList* list, int data)
 	}
 }
 
-void RemoveNode(struct LinkedList* list, struct node* node)
+void RemoveNode(struct LinkedList* list, struct LinkedListNode* node)
 {
 	if (list->head == NULL)
 	{
@@ -83,18 +83,18 @@ void RemoveNode(struct LinkedList* list, struct node* node)
 
 	if (list->head == node)
 	{
-		struct node* temp = list->head;
+		struct LinkedListNode* temp = list->head;
 		list->head = list->head->next;
 		free(temp);
 		return;
 	}
 
-	struct node* it = list->head;
+	struct LinkedListNode* it = list->head;
 	while (it->next != NULL)
 	{
 		if (it->next == node)
 		{
-			struct node* temp = it->next;
+			struct LinkedListNode* temp = it->next;
 			it->next = it->next->next;
 			free(temp);
 			return;
@@ -105,16 +105,16 @@ void RemoveNode(struct LinkedList* list, struct node* node)
 
 void PrintList(struct LinkedList* list)
 {
-	for (struct node* it = list->head; it != NULL; it = it->next)
+	for (struct LinkedListNode* it = list->head; it != NULL; it = it->next)
 	{
 		printf("%d -> ", it->data);
 	}
 	printf("NULL\n");
 }
 
-struct node* FindNode(struct LinkedList* list, int data)
+struct LinkedListNode* FindNode(struct LinkedList* list, int data)
 {
-	for (struct node* it = list->head; it != NULL; it = it->next)
+	for (struct LinkedListNode* it = list->head; it != NULL; it = it->next)
 	{
 		if (it->data == data)
 		{
@@ -124,10 +124,10 @@ struct node* FindNode(struct LinkedList* list, int data)
 	return NULL;
 }
 
-struct node* FindLastNode(struct LinkedList* list, int data)
+struct LinkedListNode* FindLastNode(struct LinkedList* list, int data)
 {
-	struct node* lastNode = NULL;
-	for (struct node* it = list->head; it != NULL; it = it->next)
+	struct LinkedListNode* lastNode = NULL;
+	for (struct LinkedListNode* it = list->head; it != NULL; it = it->next)
 	{
 		if (it->data == data)
 		{
@@ -137,9 +137,9 @@ struct node* FindLastNode(struct LinkedList* list, int data)
 	return lastNode;
 }
 
-struct node* FindNthNode(struct LinkedList* list, int n)
+struct LinkedListNode* FindNthNode(struct LinkedList* list, int n)
 {
-	struct node* it = list->head;
+	struct LinkedListNode* it = list->head;
 	for (int i = 0; i < n; i++)
 	{
 		if (it == NULL)
@@ -151,9 +151,9 @@ struct node* FindNthNode(struct LinkedList* list, int n)
 	return it;
 }
 
-struct node* FindNodeByCondition(struct LinkedList* list, int(*condition)(int))
+struct LinkedListNode* FindNodeByCondition(struct LinkedList* list, int(*condition)(int))
 {
-	for (struct node* it = list->head; it != NULL; it = it->next)
+	for (struct LinkedListNode* it = list->head; it != NULL; it = it->next)
 	{
 		if (condition(it->data))
 		{
@@ -163,10 +163,10 @@ struct node* FindNodeByCondition(struct LinkedList* list, int(*condition)(int))
 	return NULL;
 }
 
-struct node* FindLastNodeByCondition(struct LinkedList* list, int(*condition)(int))
+struct LinkedListNode* FindLastNodeByCondition(struct LinkedList* list, int(*condition)(int))
 {
-	struct node* lastNode = NULL;
-	for (struct node* it = list->head; it != NULL; it = it->next)
+	struct LinkedListNode* lastNode = NULL;
+	for (struct LinkedListNode* it = list->head; it != NULL; it = it->next)
 	{
 		if (condition(it->data))
 		{

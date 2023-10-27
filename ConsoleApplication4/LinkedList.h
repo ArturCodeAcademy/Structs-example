@@ -2,25 +2,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct node
+struct LinkedListNode
 {
 	int data;
-	struct node* next;
+	struct LinkedListNode* next;
 };
 
 struct LinkedList
 {
-	struct node* head;
+	struct LinkedListNode* head;
 };
 
 struct LinkedList CreateLinkedList();
 struct LinkedList CreateLinkedListFromArray(int* arr, int size);
-struct node* AddNode(struct LinkedList* list, int data);
+struct LinkedListNode* AddNode(struct LinkedList* list, int data);
 void RemoveElement(struct LinkedList* list, int data);
-void RemoveNode(struct LinkedList* list, struct node* node);
+void RemoveNode(struct LinkedList* list, struct LinkedListNode* node);
 void PrintList(struct LinkedList* list);
-struct node* FindNode(struct LinkedList* list, int data);
-struct node* FindLastNode(struct LinkedList* list, int data);
-struct node* FindNthNode(struct LinkedList* list, int n);
-struct node* FindNodeByCondition(struct LinkedList* list, int(*condition)(int));
-struct node* FindLastNodeByCondition(struct LinkedList* list, int(*condition)(int));
+struct LinkedListNode* FindNode(struct LinkedList* list, int data);
+struct LinkedListNode* FindLastNode(struct LinkedList* list, int data);
+struct LinkedListNode* FindNthNode(struct LinkedList* list, int n);
+struct LinkedListNode* FindNodeByCondition(struct LinkedList* list, int(*condition)(int));
+struct LinkedListNode* FindLastNodeByCondition(struct LinkedList* list, int(*condition)(int));
